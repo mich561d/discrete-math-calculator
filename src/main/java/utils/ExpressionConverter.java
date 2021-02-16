@@ -39,7 +39,7 @@ public class ExpressionConverter {
     private static String AddSpaces(String expression) {
         String result = "";
         for (char c : expression.toCharArray()) {
-            if (c == '!' || c == '¬') {
+            if (c == '!' || c == '¬' || c == '(') {
                 result += c;
             } else {
                 result += String.format("%c ", c);
