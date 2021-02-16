@@ -2,7 +2,17 @@ package utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 import utils.DTOs.CalculationDTO;
+import static utils.ExpressionConverter.convertExpression;
+import static utils.ExpressionConverter.convertExpressionToVariableLetters;
+import static utils.ExpressionConverter.replaceExpressionPlaceholders;
+import static utils.HardcodedRows.variablesToRows;
+import static utils.UtilsHelper.isCharactorBetween;
 import utils.enums.ExpressionTypes;
 
 public class DiscreteMath {
@@ -12,13 +22,16 @@ public class DiscreteMath {
         symbols.add("!  <=> ¬ = not");
         symbols.add("&& <=> ∧ = and");
         symbols.add("|| <=> ∨ = or");
+        symbols.add("( = start block");
+        symbols.add(") = close block");
         return symbols;
     }
 
     public static CalculationDTO calculateExpression(String expression) {
-        String convertedExpression = ExpressionConverter.convertExpression(expression);
+        String convertedExpression = convertExpression(expression);
         List<String> headers = createHeaders(convertedExpression);
         List<List<ExpressionTypes>> rows = createRows(headers);
+        evaluateExpressionWithRows(expression, rows);
         return new CalculationDTO(convertedExpression, headers, rows);
     }
 
@@ -35,27 +48,39 @@ public class DiscreteMath {
         return headers;
     }
 
-    private static boolean isCharactorBetween(char c, int min, int max) {
-        int charAsInt = c;
-        return charAsInt >= min && charAsInt <= max;
-    }
-
     private static List<List<ExpressionTypes>> createRows(List<String> headers) {
-        List<List<ExpressionTypes>> rows = new ArrayList();
         int numberOfVariables = headers.size() - 1;
+        return variablesToRows(numberOfVariables);
+        /* Some code I havn'nt made work yet
+        List<List<ExpressionTypes>> rows = new ArrayList();
         int uniqueRows = UtilsHelper.getUniqueRowsFromNumberOfVariables(numberOfVariables);
         for (int i = 0; i < uniqueRows; i++) {
             List<ExpressionTypes> row = new ArrayList();
-            for (int j = 0; j < numberOfVariables; j++) {
-                row.add(ExpressionTypes.TRUE);
-            }
-            
-            // TODO: Evaluate expression with current lines expression types
-            row.add(ExpressionTypes.UNKNOWN); // UNKNOWN for now untill TODO is completed
+            row.add(ExpressionTypes.UNKNOWN);
             rows.add(row);
         }
 
         return rows;
+         */
     }
+
+    private static void evaluateExpressionWithRows(String expression, List<List<ExpressionTypes>> rows) {
+        ScriptEngineManager mgr = new ScriptEngineManager();
+        ScriptEngine engine = mgr.getEngineByName("JavaScript");
+
+        List<Character> variableLetters = convertExpressionToVariableLetters(expression);
+
+        for (List<ExpressionTypes> row : rows) {
+            String expressionWithValues = replaceExpressionPlaceholders(expression, variableLetters, row);
+            try {
+                boolean evaluatedExpression = (boolean) engine.eval(expressionWithValues);
+                row.set(row.size()-1, evaluatedExpression ? ExpressionTypes.TRUE : ExpressionTypes.FALSE);
+            } catch (ScriptException ex) {
+                Logger.getLogger(DiscreteMath.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+  
 
 }

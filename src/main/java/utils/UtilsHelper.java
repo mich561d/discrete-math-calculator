@@ -9,4 +9,9 @@ public class UtilsHelper {
         }
         return numberOfPossibleUniqueRows;
     }
+
+    public static boolean isCharactorBetween(char c, int min, int max) {
+        int charAsInt = c;
+        return charAsInt >= min && charAsInt <= max;
+    }
 }

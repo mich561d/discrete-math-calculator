@@ -1,5 +1,10 @@
 package utils;
 
+import java.util.ArrayList;
+import java.util.List;
+import static utils.UtilsHelper.isCharactorBetween;
+import utils.enums.ExpressionTypes;
+
 public class ExpressionConverter {
 
     public static String convertExpression(String expression) {
@@ -39,6 +44,28 @@ public class ExpressionConverter {
             } else {
                 result += String.format("%c ", c);
             }
+        }
+        return result;
+    }
+
+    public static List<Character> convertExpressionToVariableLetters(String expression) {
+        List<Character> variableLetters = new ArrayList();
+        for (char c : expression.toCharArray()) {
+            if (isCharactorBetween(c, 97, 122) || isCharactorBetween(c, 65, 90)) {
+                if (!variableLetters.contains(c)) {
+                    variableLetters.add(c);
+                }
+            }
+        }
+        return variableLetters;
+    }
+
+    public static String replaceExpressionPlaceholders(String expression, List<Character> variableLetters, List<ExpressionTypes> row) {
+        String result = expression;
+        for (int i = 0; i < variableLetters.size(); i++) {
+            String currentPlaceholder = String.format("%c", variableLetters.get(i));
+            String currentBoolean = row.get(i).equals(ExpressionTypes.TRUE) ? "true" : "false";
+            result = result.replaceAll(currentPlaceholder, currentBoolean);
         }
         return result;
     }
