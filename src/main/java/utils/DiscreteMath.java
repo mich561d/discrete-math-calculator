@@ -27,14 +27,14 @@ public class DiscreteMath {
         for (char c : expression.toCharArray()) {
             if (isCharactorBetween(c, 97, 122) || isCharactorBetween(c, 65, 90)) {
                 if (!headers.contains(String.format("%c", c))) {
-                        headers.add(String.format("%c", c));
+                    headers.add(String.format("%c", c));
                 }
             }
         }
         headers.add(expression);
         return headers;
     }
-    
+
     private static boolean isCharactorBetween(char c, int min, int max) {
         int charAsInt = c;
         return charAsInt >= min && charAsInt <= max;
@@ -43,15 +43,19 @@ public class DiscreteMath {
     private static List<List<ExpressionTypes>> createRows(List<String> headers) {
         List<List<ExpressionTypes>> rows = new ArrayList();
         int numberOfVariables = headers.size() - 1;
-        for (int i = 0; i < numberOfVariables; i++) {
+        int uniqueRows = UtilsHelper.getUniqueRowsFromNumberOfVariables(numberOfVariables);
+        for (int i = 0; i < uniqueRows; i++) {
             List<ExpressionTypes> row = new ArrayList();
-
-            row.add(ExpressionTypes.TRUE);
-            row.add(ExpressionTypes.FALSE);
-
-            row.add(ExpressionTypes.UNKNOWN);
+            for (int j = 0; j < numberOfVariables; j++) {
+                row.add(ExpressionTypes.TRUE);
+            }
+            
+            // TODO: Evaluate expression with current lines expression types
+            row.add(ExpressionTypes.UNKNOWN); // UNKNOWN for now untill TODO is completed
             rows.add(row);
         }
+
         return rows;
     }
+
 }
