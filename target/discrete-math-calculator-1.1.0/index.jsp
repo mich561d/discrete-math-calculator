@@ -63,7 +63,9 @@
                         </tbody>
                     </table>
                     <% } else {%>
-                    <p>Output</p>
+                    <p>1. Write an expression</p>
+                    <p>2. Press 'Calculate'</p>
+                    <p>3. Result will show here</p>
                     <% }%>
                 </div>
             </div>

@@ -15,7 +15,7 @@ public class FrontController extends HttpServlet {
             Command action = CommandController.from(request);
             String view = action.execute(request, response);
             request.getRequestDispatcher(view + ".jsp").forward(request, response);
-        } catch (IOException | ServletException e) {
+        } catch (IOException | ServletException | IllegalArgumentException e) {
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
     }
