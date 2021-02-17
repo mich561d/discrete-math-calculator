@@ -9,11 +9,11 @@ public class ExpressionConverter {
 
     public static String convertExpression(String expression) {
         String trimmedExpression = expression.replaceAll(" ", "");
-        String convertedExpression = ConvertCharactors(trimmedExpression);
-        return AddSpaces(convertedExpression);
+        String convertedExpression = convertCharactors(trimmedExpression);
+        return addSpaces(convertedExpression).trim();
     }
 
-    private static String ConvertCharactors(String expression) {
+    private static String convertCharactors(String expression) {
         String result = "";
         for (int i = 0; i < expression.length(); i++) {
             char c = expression.charAt(i);
@@ -36,13 +36,19 @@ public class ExpressionConverter {
         return result;
     }
 
-    private static String AddSpaces(String expression) {
+    private static String addSpaces(String expression) {
         String result = "";
-        for (char c : expression.toCharArray()) {
+        char[] chars = expression.toCharArray();
+        for (int i = 0; i < chars.length; i++) {
+            char c = chars[i];
             if (c == '!' || c == '¬' || c == '(') {
                 result += c;
             } else {
-                result += String.format("%c ", c);
+                if (i + 1 < chars.length && chars[i + 1] == ')') {
+                    result += c;
+                } else {
+                    result += String.format("%c ", c);
+                }
             }
         }
         return result;

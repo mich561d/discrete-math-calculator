@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import utils.UtilsHelper;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class UtilsHelperTest {
+public class GetUniqueRowsFromNumbersOfVariables {
 
     @Test
     public void OneMustGiveTwo() {
