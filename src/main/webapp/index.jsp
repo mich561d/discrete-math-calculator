@@ -16,7 +16,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <p>Description</p>
+                    <div class="card my-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Description</h5>
+                            <p class="card-text">Welcome to my discrete math calculator! This system is created to evaluate discrete math expression and show a result table for that expression. This is still a work in progress system and therefore errors can occur.</p>
+                            <p class="card-text">Some examples of discrete math expressions: <code>'!a'</code>, <code>'a && b'</code>, <code>'a || !b'</code>, <code>'a && (!b || !c)'</code> and so on. You can use any letter both lowercase and uppercase, you can read the rules of which statements you can use in current version of this discrete math calculator.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -26,14 +32,13 @@
                             <form name="CalculateExpression" action="FrontController" method="POST">
                                 <input type="hidden" name="command" value="CalculateExpression">
                                 <label for="discrete-math-expression" class="form-label">Discrete Math Expression:</label>
-                                <input type="text" class="form-control" id="discrete-math-expression" name="discrete-math-expression" placeholder="Write an expression..">
+                                <input type="text" class="form-control" id="discrete-math-expression" name="discrete-math-expression" placeholder="Write an expression...">
                                 <button type="submit" class="btn btn-primary mt-1">Calculate</button>
                             </form>
                         </div>
                     </div>
                     <div class="row mt-3">
                         <div class="col-12">
-                            <p>Rules</p>
                             <% if (request.getSession().getAttribute("expression-rules") != null) {%>
                             <% List<ExpressionRuleDTO> rules = (List<ExpressionRuleDTO>) request.getSession().getAttribute("expression-rules");%>
 
@@ -54,9 +59,21 @@
                                     <div class="tab-content" id="nav-tabContent">
                                         <% for (int i = 0; i < rules.size(); i++) {%>
                                         <% if (i == 0) {%>
-                                        <div class="tab-pane fade show active" id="list-<%=rules.get(i).getTitle()%>" role="tabpanel" aria-labelledby="list-<%=rules.get(i).getTitle()%>-list"><%=rules.get(i).getDescription()%></div>
+                                        <div class="tab-pane fade show active" id="list-<%=rules.get(i).getTitle()%>" role="tabpanel" aria-labelledby="list-<%=rules.get(i).getTitle()%>-list">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <p class="card-text"><%=rules.get(i).getDescription()%></p>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <%} else {%>
-                                        <div class="tab-pane fade" id="list-<%=rules.get(i).getTitle()%>" role="tabpanel" aria-labelledby="list-<%=rules.get(i).getTitle()%>-list"><%=rules.get(i).getDescription()%></div>
+                                        <div class="tab-pane fade" id="list-<%=rules.get(i).getTitle()%>" role="tabpanel" aria-labelledby="list-<%=rules.get(i).getTitle()%>-list">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <p class="card-text"><%=rules.get(i).getDescription()%></p>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <%}%>
                                         <%}%>
                                     </div>
