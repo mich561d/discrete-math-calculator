@@ -2,6 +2,7 @@ package utils;
 
 import java.util.List;
 import java.util.Scanner;
+import utils.DTOs.ExpressionRuleDTO;
 
 public class UserInteractor {
     
@@ -13,7 +14,7 @@ public class UserInteractor {
         return answer;
     }
     
-    public static void showSymbols(List<String> symbols) {
+    public static void showSymbols(List<ExpressionRuleDTO> symbols) {
         System.out.println("--- Usable symbols ---");
         symbols.forEach(line -> System.out.println(line));
         System.out.println("----------------------");

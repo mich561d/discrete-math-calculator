@@ -1,7 +1,6 @@
 package controller;
 
-import controller.commands.CalculateExpressionCommand;
-import controller.commands.UnknownCommand;
+import controller.commands.*;
 import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,6 +11,7 @@ public abstract class CommandController {
     private static void initCommands() {
         commands = new HashMap<>();
         commands.put("CalculateExpression", new CalculateExpressionCommand());
+        commands.put("RetrieveRules", new RetrieveRulesCommand());
     }
 
     static Command from(HttpServletRequest request) {

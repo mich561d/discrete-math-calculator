@@ -1,3 +1,4 @@
+<%@page import="utils.DTOs.ExpressionRuleDTO"%>
 <%@page import="utils.enums.ExpressionTypes"%>
 <%@page import="java.util.List"%>
 <%@page import="utils.DTOs.CalculationDTO"%>
@@ -33,6 +34,40 @@
                     <div class="row mt-3">
                         <div class="col-12">
                             <p>Rules</p>
+                            <% if (request.getSession().getAttribute("expression-rules") != null) {%>
+                            <% List<ExpressionRuleDTO> rules = (List<ExpressionRuleDTO>) request.getSession().getAttribute("expression-rules");%>
+
+
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="list-group" id="list-tab" role="tablist">
+                                        <% for (int i = 0; i < rules.size(); i++) {%>
+                                        <% if (i == 0) {%>
+                                        <a class="list-group-item list-group-item-action active" id="list-<%=rules.get(i).getTitle()%>-list" data-bs-toggle="list" href="#list-<%=rules.get(i).getTitle()%>" role="tab" aria-controls="home"><%=rules.get(i).getTitle()%></a>
+                                        <%} else {%>
+                                        <a class="list-group-item list-group-item-action" id="list-<%=rules.get(i).getTitle()%>-list" data-bs-toggle="list" href="#list-<%=rules.get(i).getTitle()%>" role="tab" aria-controls="profile"><%=rules.get(i).getTitle()%></a>
+                                        <%}%>
+                                        <%}%>
+                                    </div>
+                                </div>
+                                <div class="col-8">
+                                    <div class="tab-content" id="nav-tabContent">
+                                        <% for (int i = 0; i < rules.size(); i++) {%>
+                                        <% if (i == 0) {%>
+                                        <div class="tab-pane fade show active" id="list-<%=rules.get(i).getTitle()%>" role="tabpanel" aria-labelledby="list-<%=rules.get(i).getTitle()%>-list"><%=rules.get(i).getDescription()%></div>
+                                        <%} else {%>
+                                        <div class="tab-pane fade" id="list-<%=rules.get(i).getTitle()%>" role="tabpanel" aria-labelledby="list-<%=rules.get(i).getTitle()%>-list"><%=rules.get(i).getDescription()%></div>
+                                        <%}%>
+                                        <%}%>
+                                    </div>
+                                </div>
+                            </div>
+                            <% } else {%>
+                            <form name="RetrieveRules" action="FrontController" method="POST">
+                                <input type="hidden" name="command" value="RetrieveRules">
+                                <button type="submit" class="btn btn-primary btn-sm">Retrieve rules</button>
+                            </form>
+                            <% }%>
                         </div>
                     </div>
                 </div>
