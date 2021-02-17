@@ -3,5 +3,10 @@ C:\Users\mich5\Desktop\Alt\Privat\Projects\discrete-math-calculator\src\main\jav
 C:\Users\mich5\Desktop\Alt\Privat\Projects\discrete-math-calculator\src\main\java\main\Main.java
 C:\Users\mich5\Desktop\Alt\Privat\Projects\discrete-math-calculator\src\main\java\utils\enums\ExpressionTypes.java
 C:\Users\mich5\Desktop\Alt\Privat\Projects\discrete-math-calculator\src\main\java\utils\UserInteractor.java
+C:\Users\mich5\Desktop\Alt\Privat\Projects\discrete-math-calculator\src\main\java\controller\Command.java
+C:\Users\mich5\Desktop\Alt\Privat\Projects\discrete-math-calculator\src\main\java\utils\HardcodedRows.java
 C:\Users\mich5\Desktop\Alt\Privat\Projects\discrete-math-calculator\src\main\java\utils\DTOs\CalculationDTO.java
+C:\Users\mich5\Desktop\Alt\Privat\Projects\discrete-math-calculator\src\main\java\controller\CommandController.java
+C:\Users\mich5\Desktop\Alt\Privat\Projects\discrete-math-calculator\src\main\java\controller\commands\UnknownCommand.java
+C:\Users\mich5\Desktop\Alt\Privat\Projects\discrete-math-calculator\src\main\java\controller\FrontController.java
 C:\Users\mich5\Desktop\Alt\Privat\Projects\discrete-math-calculator\src\main\java\utils\UtilsHelper.java

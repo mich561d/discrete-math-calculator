@@ -1,1 +1,12 @@
+utils\enums\ExpressionTypes.class
+utils\DiscreteMath.class
+controller\commands\UnknownCommand.class
+utils\ExpressionConverter.class
+utils\DTOs\CalculationDTO.class
+controller\CommandController.class
+utils\UtilsHelper.class
+controller\FrontController.class
+utils\UserInteractor.class
+controller\Command.class
 main\Main.class
+utils\HardcodedRows.class

@@ -1,0 +1,5 @@
+utils\expressionConverter\ConvertExpression.class
+utils\expressionConverter\ConvertExpressionToVariableLetters.class
+utils\expressionConverter\ReplaceExpressionPlaceholders.class
+utils\utilsHelper\GetUniqueRowsFromNumbersOfVariables.class
+utils\utilsHelper\IsCharactorBetween.class
