@@ -41,8 +41,6 @@
                         <div class="col-12">
                             <% if (request.getSession().getAttribute("expression-rules") != null) {%>
                             <% List<ExpressionRuleDTO> rules = (List<ExpressionRuleDTO>) request.getSession().getAttribute("expression-rules");%>
-
-
                             <div class="row">
                                 <div class="col-4">
                                     <div class="list-group" id="list-tab" role="tablist">
