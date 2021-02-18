@@ -12,7 +12,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <p>Error</p>
+                    <div class="card my-3">
+                        <div class="card-body">
+                            <h5 class="card-title">An error occurred!</h5>
+                            <p class="card-text"><%=request.getSession().getAttribute("caught-exception")%></p>
+                            <form name="GoToIndex" action="FrontController" method="POST">
+                                <input type="hidden" name="command" value="GoToIndex">
+                                <button type="submit" class="btn btn-primary btn-sm">Go back</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -12,7 +12,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <p>Page not found!</p>
+                    <div class="card my-3">
+                        <div class="card-body">
+                            <h5 class="card-title">The page was not found!</h5>
+                            <p class="card-text">The page you were looking either does not exists or the path has changed, not been implemented or removed wrongfully.</p>
+                            <form name="GoToIndex" action="FrontController" method="POST">
+                                <input type="hidden" name="command" value="GoToIndex">
+                                <button type="submit" class="btn btn-primary btn-sm">Go back</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

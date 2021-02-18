@@ -12,6 +12,7 @@ public abstract class CommandController {
         commands = new HashMap<>();
         commands.put("CalculateExpression", new CalculateExpressionCommand());
         commands.put("RetrieveRules", new RetrieveRulesCommand());
+        commands.put("GoToIndex", new GoToIndexCommand());
     }
 
     static Command from(HttpServletRequest request) {
