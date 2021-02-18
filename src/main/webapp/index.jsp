@@ -19,7 +19,7 @@
                     <div class="card my-3">
                         <div class="card-body">
                             <h5 class="card-title">Description</h5>
-                            <p class="card-text">Welcome to my discrete math calculator! This system is created to evaluate discrete math expression and show a result table for that expression. This is still a work in progress system and therefore errors can occur.</p>
+                            <p class="card-text">Welcome to my discrete math calculator! This system is created to evaluate discrete math expression and show a result table for that expression. This is still a work in progress system and therefore errors can occur. There is currently a limit to placeholders in the expression - You can use up to five placeholders (placeholder = variable or letter)</p>
                             <p class="card-text">Some examples of discrete math expressions: <code>'!a'</code>, <code>'a && b'</code>, <code>'a || !b'</code>, <code>'a && (!b || !c)'</code> and so on. You can use any letter both lowercase and uppercase, you can read the rules of which statements you can use in current version of this discrete math calculator.</p>
                         </div>
                     </div>
