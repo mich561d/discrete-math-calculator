@@ -20,12 +20,17 @@ public class DiscreteMath {
 
     public static List<ExpressionRuleDTO> getSymbols() {
         List<ExpressionRuleDTO> symbols = new ArrayList();
-        symbols.add(new ExpressionRuleDTO("NOT", "In the expression use '!' it will automatically be converted to '¬'. The NOT statement will negate the value. Etc: if 'a = true' then '!a = false'"));
-        symbols.add(new ExpressionRuleDTO("AND", "In the expression use '&&' it will automatically be converted to '∧'. The AND statement will require both sides to be true. Etc: if 'a = true, b = true' then 'a && b = true'"));
-        symbols.add(new ExpressionRuleDTO("OR", "In the expression use '||' it will automatically be converted to '∨'. The OR statement will only needs one side to be true. Etc: if 'a = true, b = false' then 'a || b = true'"));
-        symbols.add(new ExpressionRuleDTO("PARENTHESES", "In the expression use '(' and ')' to alter the reading order as normal programming or mathematics. Parentheses will make sure certain statements will be evaluated before others."));
+        symbols.add(new ExpressionRuleDTO("Placeholders", "Placeholders means variables in the expression, a veriable in the expression is simply a letter. You can use either lowercase or uppercase letters", "a"));
+        symbols.add(new ExpressionRuleDTO("Negation", "Negation means not the case that 'a'. In the expression use '!' it will automatically be converted to '¬'.", "!a"));
+        symbols.add(new ExpressionRuleDTO("Conjuction", "Conjuction means both 'a' and 'b'. In the expression use '&&' it will automatically be converted to '∧'.", "a && b"));
+        symbols.add(new ExpressionRuleDTO("Disjunction", "Disjunction means either 'a' or 'b'. In the expression use '||' it will automatically be converted to '∨'.", "a || b"));
+        symbols.add(new ExpressionRuleDTO("Parentheses", "In the expression use '(' and ')' as normal. Parentheses will make sure certain statements will be evaluated before others.", "(a && b) || (c && d)"));
+        symbols.add(new ExpressionRuleDTO("Exclusive disjunction", "Exclusive disjunction means either 'a' or 'b', but not both.", "(a || b) && !(a && b)"));
+        symbols.add(new ExpressionRuleDTO("Tautology", "Something that is always true is called a tautology. In the expression use '==' it will automatically be converted to '≡'.", "a == a"));
+        symbols.add(new ExpressionRuleDTO("Contradiction", "Something that can never be true is called a contradiction. In the expression use '!=' it will automatically be converted to '≠'", "a != a"));
         return symbols;
     }
+    
 
     public static CalculationDTO calculateExpression(String expression) {
         String convertedExpression = convertExpression(expression);

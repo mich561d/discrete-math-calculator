@@ -19,6 +19,11 @@ public class ExpressionConverter {
             char c = expression.charAt(i);
             switch (c) {
                 case '!':
+                    if (i + 1 <= expression.length() && expression.charAt(i + 1) == '=') {
+                        result += "≠";
+                        i++;
+                        break;
+                    }
                     result += "¬";
                     break;
                 case '&':
@@ -29,6 +34,9 @@ public class ExpressionConverter {
                     result += "∨";
                     i++;
                     break;
+                case '=':
+                    result += "≡";
+                    i++;
                 default:
                     result += c;
             }
@@ -41,7 +49,7 @@ public class ExpressionConverter {
         char[] chars = expression.toCharArray();
         for (int i = 0; i < chars.length; i++) {
             char c = chars[i];
-            if (c == '!' || c == '¬' || c == '(') {
+            if ( c == '¬' || c == '(') {
                 result += c;
             } else {
                 if (i + 1 < chars.length && chars[i + 1] == ')') {
