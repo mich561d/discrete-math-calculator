@@ -19,7 +19,7 @@
                     <div class="card my-3">
                         <div class="card-body">
                             <h5 class="card-title">Description</h5>
-                            <p class="card-text">Welcome to my discrete math calculator! This system is created to evaluate discrete math expression and show a result table for that expression. This is still a work in progress system and therefore errors can occur. There is currently a limit to placeholders in the expression - You can use up to five placeholders (placeholder = variable or letter)</p>
+                            <p class="card-text">Welcome to my discrete math calculator! This system is created to evaluate discrete math expression and show a result table for that expression. This is still a work in progress system and therefore errors can occur. There is currently a limit to placeholders in the expression - You can use up to five placeholders (placeholder = variable or letter). If the calculation says 'unknown' means that the expression could not be evaluated.</p>
                             <p class="card-text">Some examples of discrete math expressions: <code>'!a'</code>, <code>'a && b'</code>, <code>'a || !b'</code>, <code>'a && (!b || !c)'</code> and so on. You can use any letter both lowercase and uppercase, you can read the rules of which statements you can use in current version of this discrete math calculator.</p>
                         </div>
                     </div>
@@ -89,7 +89,7 @@
                 <div class="col-8">
                     <% if (request.getSession().getAttribute("discrete-math-result") != null) {%>
                     <% CalculationDTO result = (CalculationDTO) request.getSession().getAttribute("discrete-math-result");%>
-                    <table class="table table-hover">
+                    <table class="table table-hover table-sm">
                         <thead>
                             <tr>
                                 <% for (String header : result.getHeaders()) {%>
@@ -101,10 +101,12 @@
                             <% for (List<ExpressionTypes> row : result.getRows()) {%>
                             <tr>
                                 <% for (ExpressionTypes expressionType : row) {%>
-                                <% if (expressionType.equals(ExpressionTypes.TRUE)) {%>
+                                <% if (ExpressionTypes.TRUE.equals(expressionType)) {%>
                                 <td class="text-success">
-                                    <% } else {%>
+                                    <% } else if (ExpressionTypes.FALSE.equals(expressionType)) {%>
                                 <td class="text-danger">
+                                    <%} else {%>
+                                <td class="text-warning">
                                     <% }%>
                                     <%=expressionType%></td>
                                     <%}%>
