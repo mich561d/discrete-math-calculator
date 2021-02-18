@@ -37,6 +37,7 @@ public class ExpressionConverter {
                 case '=':
                     result += "≡";
                     i++;
+                    break;
                 default:
                     result += c;
             }
